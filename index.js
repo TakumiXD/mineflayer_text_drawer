@@ -6,8 +6,8 @@ const GoalNearXZ = goals.GoalNearXZ;
 const GoalXZ = goals.GoalXZ;
 const letters = require('./letters').letters;
 
-const PORT_NUMBER = 12345; // -=CHANGEME=- the port number of minecraft server
-const BOT_USERNAME = "Steve"; // -=CHANGEME=- the in game name of the bot
+const PORT_NUMBER = 12345; // CHANGEME the port number of minecraft server
+const BOT_USERNAME = "Steve"; // CHANGEME the in game name of the bot
 const settings = {
     host: "localhost",
     port: PORT_NUMBER,
@@ -53,10 +53,10 @@ async function moveBackwardsFrom(coordinates) {
     try {
         bot.lookAt(coordinates.offset(0, 0, 1));
         while (bot.entity.position.distanceTo(coordinates) < 2) {
-            bot.setControlState('back', true)
+            bot.setControlState('back', true);
             await bot.waitForTicks(1);
         }
-        bot.setControlState('back', false)
+        bot.setControlState('back', false);
     } catch(e) {
         console.log(e);
     }
@@ -77,7 +77,7 @@ async function setBlocks(mainBlock, backgroundBlock) {
         if (!BACKGROUND_BLOCK) return false;
         await bot.creative.setInventorySlot(INVENTORY_SLOT_2, new Item(BACKGROUND_BLOCK, 1));
     }
-    return true
+    return true;
 }
 
 // --- Give name of a block as a string returns the mcData blocks id
@@ -188,7 +188,7 @@ async function drawLetter(letter, position, fillBackground) {
             }
         }
     }
-    return letterWidth
+    return letterWidth;
 }
 
 // --- Makes the bot draw the specified text
@@ -211,7 +211,7 @@ async function draw(text) {
         }
     }
     await drawLineSpace(nextPosition, fillBackground);
-    await gotoExactXZ(nextPosition.offset(4, 0, -1))
+    await gotoExactXZ(nextPosition.offset(4, 0, -1));
     bot.chat(`Done drawing ${text}`);
     console.log(`Done drawing ${text}`);
 }
@@ -219,7 +219,7 @@ async function draw(text) {
 // -- bot constructor (called immediately after bot is created)
 const bot = mineflayer.createBot(settings);
 bot.once("spawn", () => {
-    console.log(`${BOT_USERNAME} spawned`)
+    console.log(`${BOT_USERNAME} spawned`);
     bot.loadPlugin(pathfinder);
     mcData = require('minecraft-data')(bot.version);
 	movements = new Movements(bot, mcData);
