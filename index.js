@@ -7,12 +7,11 @@ const GoalXZ = goals.GoalXZ;
 const letters = require('./letters').letters;
 
 const PORT_NUMBER = 12345; // -=CHANGEME=- the port number of minecraft server
-const ADMIN_USERNAME = "ADMIN" // -=CHANGEME=- the in game name of the user controlling the bot
 const BOT_USERNAME = "Steve"; // -=CHANGEME=- the in game name of the bot
 const settings = {
     host: "localhost",
     port: PORT_NUMBER,
-	username: BOT_USERNAME,
+    username: BOT_USERNAME,
 };
 
 var mcData;
@@ -237,7 +236,7 @@ bot.on("error", err => console.log(err));
 
 // --- Main function that listens for the main command, bot command listener
 bot.on("chat", async (username, message) => {
-	if (username != ADMIN_USERNAME) return;
+	if (username == BOT_USERNAME) return;
 
 	let tokens = message.split(" ");
     
